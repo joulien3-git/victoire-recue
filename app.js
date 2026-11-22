@@ -1,11 +1,12 @@
 (function () {
   var screens = {};
   document.querySelectorAll('.screen').forEach(function (s) { screens[s.dataset.screen] = s; });
+  var first = document.querySelector('.screen').dataset.screen;
   var current = null;
   var goingBack = false;
 
   function show(id) {
-    if (!screens[id]) id = '01';
+    if (!screens[id]) id = first;
     if (current === id) return;
     Object.keys(screens).forEach(function (k) {
       var s = screens[k];
@@ -17,7 +18,7 @@
     goingBack = false;
   }
 
-  function route() { show(location.hash.replace('#', '') || '01'); }
+  function route() { show(location.hash.replace('#', '') || first); }
 
   document.addEventListener('click', function (e) {
     var go = e.target.closest('[data-go]');
