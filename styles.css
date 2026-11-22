@@ -1,0 +1,194 @@
+/* Tokens from Figma */
+:root {
+  --orange: #df7130;
+  --noir: #1a1714;
+  --blanc: #ffffff;
+  --brun: #ad7554;
+  --app-w: min(100vw, 430px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: manipulation;
+  background: var(--orange);
+}
+
+body {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  color: var(--noir);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+img { -webkit-user-drag: none; -webkit-touch-callout: none; }
+button { font: inherit; color: inherit; border: 0; padding: 0; margin: 0; background: none; cursor: pointer; }
+h1, p { margin: 0; }
+
+/* App frame: exactly the visible area, no scroll */
+.app {
+  position: fixed;
+  inset: 0;
+  margin: 0 auto;
+  max-width: 430px;
+  height: 100vh;      /* fallback */
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--orange);
+}
+
+/* Screens */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(16px);
+  transition: opacity .22s ease, transform .22s ease, visibility 0s linear .22s;
+}
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity .22s ease, transform .22s ease, visibility 0s;
+}
+.screen.back-anim:not(.active) { transform: translateX(-16px); }
+
+/* Top bar with back arrow (Figma: 44×44 at x 8) */
+.topbar {
+  flex: 0 0 auto;
+  height: 48px;
+  padding: 4px 8px 0;
+}
+.back { display: block; width: 44px; height: 44px; }
+.back img { display: block; width: 44px; height: 44px; }
+
+/* Flexible spacers reproduce the Figma vertical rhythm, collapse on short screens */
+.spacer { min-height: 8px; flex-basis: 0; flex-shrink: 1; }
+.spacer.top { flex-grow: var(--gt, 1); }
+.spacer.bottom { flex-grow: var(--gb, 1); }
+
+/* Illustration composition: scales as a block (design width 393) */
+.art-wrap {
+  flex: 0 1 calc(var(--app-w) * var(--h) / 393);
+  min-height: 0;
+  container-type: size;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.art {
+  position: relative;
+  width: min(100cqw, calc(100cqh * 393 / var(--h)));
+  aspect-ratio: 393 / var(--h);
+  container-type: inline-size;
+}
+.art > * {
+  position: absolute;
+  left: calc(var(--x) / 393 * 100%);
+  top: calc((var(--y) - var(--y0)) / var(--h) * 100%);
+  width: calc(var(--w) / 393 * 100%);
+  height: calc(var(--hh) / var(--h) * 100%);
+  max-width: none;
+  display: block;
+}
+.art > img { pointer-events: none; }
+
+/* Text in speech bubble: 19px SemiBold, lh 1.3, padding 8 (scaled with the art) */
+.bubble-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(8 / 393 * 100cqw);
+  font-weight: 600;
+  font-size: calc(19 / 393 * 100cqw);
+  line-height: 1.3;
+  text-align: center;
+  color: var(--noir);
+}
+
+/* Texts */
+.texts { flex: 0 0 auto; padding: 0 24px; text-align: center; position: relative; }
+.title { font-weight: 800; font-size: 32px; line-height: 1.15; }
+.title.lh-normal { line-height: 1.19; }
+.sub { margin-top: 8px; font-weight: 600; font-size: 20px; line-height: 1.2; }
+.note { margin-top: 16px; font-weight: 400; font-size: 15px; line-height: 1.4; opacity: .6; }
+
+/* Bottom actions: always above the Safari toolbar / home indicator */
+.actions {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px calc(env(safe-area-inset-bottom) + 20px);
+}
+.safe-bottom { flex: 0 0 auto; height: calc(env(safe-area-inset-bottom) + 20px); }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 52px;
+  padding: 0 24px;
+  border-radius: 38px;
+  background: var(--blanc);
+  color: var(--noir);
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.2;
+  text-align: center;
+  transition: transform .12s ease, filter .12s ease;
+}
+.btn-brown { background: var(--brun); color: var(--blanc); border-radius: 40px; }
+.btn:active, .tile:active, .back:active { transform: scale(.97); filter: brightness(.95); }
+
+/* 07 · grid of illustrations (2 × 174, gap 13 → 361) */
+.texts + .grid-wrap { margin-top: 44px; }
+.grid-wrap {
+  flex: 0 1 calc(var(--app-w) * 361 / 393);
+  min-height: 0;
+  padding: 0 16px;
+  container-type: size;
+  display: flex;
+  justify-content: center;
+}
+.grid {
+  width: min(100cqw, 100cqh);
+  aspect-ratio: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: calc(13 / 361 * 100%);
+}
+.tile {
+  position: relative;
+  display: block;
+  background: var(--blanc);
+  border-radius: calc(24 / 174 * 100%);
+  overflow: hidden;
+  transition: transform .12s ease, filter .12s ease;
+}
+.tile img {
+  position: absolute;
+  left: calc(var(--x) / 174 * 100%);
+  top: calc(var(--y) / 174 * 100%);
+  width: calc(var(--w) / 174 * 100%);
+  height: calc(var(--hh) / 174 * 100%);
+  max-width: none;
+  display: block;
+  pointer-events: none;
+}
