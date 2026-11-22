@@ -14,29 +14,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css?v=2">
+  <link rel="stylesheet" href="../styles.css?v=3">
 </head>
 <body>
 <main class="app">
-
-  <!-- 00 · Accueil -->
-  <section class="screen" id="s00" data-screen="00" style="--gt:94;--gb:139">
-    <div class="spacer top"></div>
-    <div class="art-wrap" style="--y0:148.1;--h:283">
-      <div class="art">
-        <img src="../assets/05-rond.svg" width="265.3" height="270.6" alt="" style="--x:73.85;--y:148.66;--w:265.3;--hh:270.6">
-        <img src="../assets/fille/00-couple.svg" width="302.679" height="282.917" alt="" style="--x:44.61;--y:148.1;--w:302.679;--hh:282.917">
-      </div>
-    </div>
-    <div class="texts" style="margin-top:22.3px">
-      <h1 class="title">Fête les petites victoires</h1>
-      <p class="lead">Ton amie te partage une petite victoire. À toi de la féliciter… ou de lui offrir un petit cadeau pour fêter ça&nbsp;!</p>
-    </div>
-    <div class="spacer bottom"></div>
-    <footer class="actions">
-      <button class="btn" data-go="01">C'est parti</button>
-    </footer>
-  </section>
 
   <!-- 01 · Victoire reçue -->
   <section class="screen" id="s01" data-screen="01" style="--gt:20;--gb:188">
@@ -57,7 +38,7 @@
   </section>
 
   <!-- 02 · Message envoyé -->
-  <section class="screen" id="s02" data-screen="02" style="--gt:172;--gb:209">
+  <section class="screen" id="s02" data-screen="02" style="--gt:172;--gb:141">
     <header class="topbar"><button class="back" data-back="01" aria-label="Retour"><img src="../assets/retour.svg" width="44" height="44" alt=""></button></header>
     <div class="spacer top"></div>
     <div class="art-wrap" style="--y0:272;--h:282">
@@ -71,7 +52,9 @@
       <p class="sub">Ton message est bien envoyé</p>
     </div>
     <div class="spacer bottom"></div>
-    <div class="safe-bottom"></div>
+    <footer class="actions">
+      <a class="btn btn-brown" href="../#01">Voir l'autre côté</a>
+    </footer>
   </section>
 
   <!-- 03 · Choix du cadeau -->
@@ -96,7 +79,7 @@
   </section>
 
   <!-- 04 · Cadeau envoyé -->
-  <section class="screen" id="s04" data-screen="04" style="--gt:157;--gb:180">
+  <section class="screen" id="s04" data-screen="04" style="--gt:157;--gb:112">
     <header class="topbar"><button class="back" data-back="01" aria-label="Retour"><img src="../assets/retour.svg" width="44" height="44" alt=""></button></header>
     <div class="spacer top"></div>
     <div class="art-wrap" style="--y0:257;--h:242">
@@ -111,7 +94,9 @@
       <p class="note">Elle va recevoir une notification&nbsp;: son cadeau est à utiliser quand elle veut.</p>
     </div>
     <div class="spacer bottom"></div>
-    <div class="safe-bottom"></div>
+    <footer class="actions">
+      <a class="btn btn-brown" href="../#01">Voir l'autre côté</a>
+    </footer>
   </section>
 
   <!-- 05 · London fog -->
@@ -173,6 +158,6 @@
   </section>
 
 </main>
-<script src="../app.js?v=2"></script>
+<script src="../app.js?v=3"></script>
 </body>
 </html>

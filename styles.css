@@ -195,3 +195,4 @@ h1, p { margin: 0; }
 
 /* 00 · Accueil: explanation paragraph (Regular 17, lh 1.4) */
 .lead { margin-top: 12.4px; font-weight: 400; font-size: 17px; line-height: 1.4; }
+a.btn { text-decoration: none; }
